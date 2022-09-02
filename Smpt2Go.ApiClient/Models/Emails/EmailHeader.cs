@@ -13,9 +13,15 @@ namespace Smtp2Go.Api.Models.Emails
             Value = value;
         }
 
+        /// <summary>
+        /// The email header name.
+        /// </summary>
         [JsonPropertyName("header")]
         public string Header { get; }
 
+        /// <summary>
+        /// The email header value.
+        /// </summary>
         [JsonPropertyName("value")]
         public string Value { get; }
     }

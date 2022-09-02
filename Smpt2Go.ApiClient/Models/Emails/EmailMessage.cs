@@ -15,12 +15,21 @@ namespace Smtp2Go.Api.Models.Emails
             BodyHtml = bodyHtml;
         }
 
+        /// <summary>
+        /// The subject of the email to be sent.
+        /// </summary>
         [JsonPropertyName("subject")]
         public string? Subject { get; set; }
 
+        /// <summary>
+        /// An HTML encoded email body.
+        /// </summary>
         [JsonPropertyName("text_body")]
         public string? BodyText { get; set; }
 
+        /// <summary>
+        /// An HTML encoded email body.
+        /// </summary>
         [JsonPropertyName("html_body")]
         public string? BodyHtml { get; set; }
     }

@@ -14,9 +14,15 @@ namespace Smtp2Go.Api.Models.Emails
             TemplateId = templateId;
         }
 
+        /// <summary>
+        /// A template id to generate the email.
+        /// </summary>
         [JsonPropertyName("template_id")]
         public string TemplateId { get; }
 
+        /// <summary>
+        /// The JSON data to be used to populate the email template.
+        /// </summary>
         [JsonPropertyName("template_data")]
         public IDictionary<string, string> TemplateVariables { get { return _templateVariables; } }
 
