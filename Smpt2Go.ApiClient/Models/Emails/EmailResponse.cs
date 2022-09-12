@@ -6,6 +6,9 @@ using System.Text.Json.Serialization;
 
 namespace Smtp2Go.Api.Models.Emails
 {
+    /// <summary>
+    /// The email response object that is returned from the email services in the <see cref="Smtp2GoApiService">Smtp2Go Email Service</see>.
+    /// </summary>
     public class EmailResponse : IApiResponse
     {
         /// <summary>
@@ -14,7 +17,9 @@ namespace Smtp2Go.Api.Models.Emails
         [JsonPropertyName("request_id")]
         public string RequestId { get; set; } = null!;
 
-        //Email data returned by the smtp2go API endpoint.
+        /// <summary>
+        ///Email data returned by the Smtp2Go API endpoint.
+        /// </summary>
         [JsonPropertyName("data")]
         public EmailResponseData Data { get; set; } = null!;
 

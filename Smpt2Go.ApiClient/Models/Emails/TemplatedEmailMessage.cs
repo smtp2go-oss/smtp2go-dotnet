@@ -6,7 +6,7 @@ using System.Text.Json.Serialization;
 namespace Smtp2Go.Api.Models.Emails
 {
     /// <summary>
-    /// Used for sending emails with an associated template in the Smtp2Go dashboard.
+    /// A templated email message to be sent via the <see cref="Smtp2GoApiService">Smtp2Go Email Service</see>.
     /// </summary>
     public class TemplatedEmailMessage : EmailRequest
     {

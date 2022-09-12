@@ -6,6 +6,9 @@ using System.Text.Json.Serialization;
 
 namespace Smtp2Go.Api.Models.Emails
 {
+    /// <summary>
+    /// The email response data that is included in the response from the email services in the <see cref="Smtp2GoApiService">Smtp2Go Email Service</see>.
+    /// </summary>
     public class EmailResponseData : ApiResponseData
     {
         /// <summary>

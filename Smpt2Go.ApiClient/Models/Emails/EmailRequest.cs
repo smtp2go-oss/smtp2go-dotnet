@@ -7,7 +7,10 @@ using System.Text.Json.Serialization;
 
 namespace Smtp2Go.Api.Models.Emails
 {
-    public class EmailRequest : IApiRequest
+    /// <summary>
+    /// The base implementation for an email message to be sent via the <see cref="Smtp2GoApiService">Smtp2Go Email Service</see>.
+    /// </summary>
+    public abstract class EmailRequest : IApiRequest
     {
         private readonly List<string> _to;
         private readonly List<string> _cc = new List<string>();
@@ -16,6 +19,11 @@ namespace Smtp2Go.Api.Models.Emails
         private readonly List<EmailBlob> _attachments = new List<EmailBlob>();
         private readonly List<EmailBlob> _inlines = new List<EmailBlob>();
 
+        /// <summary>
+        /// Creates an email request with minimum requirements.
+        /// </summary>
+        /// <param name="sender">The emails from email address.</param>
+        /// <param name="to">One or more email addresses to send the email to.</param>
         public EmailRequest(string sender, params string[] to)
         {
             Sender = sender;
@@ -125,7 +133,7 @@ namespace Smtp2Go.Api.Models.Emails
         }
 
         /// <summary>
-        /// 
+        /// If not already present, adds a custom header and associated value to the custom headers collection.
         /// </summary>
         /// <param name="header"></param>
         /// <param name="value"></param>
@@ -156,13 +164,27 @@ namespace Smtp2Go.Api.Models.Emails
             return this;
         }
 
-
+        /// <summary>
+        /// Adds an inline image to the InlineImages collection.
+        /// </summary>
+        /// <param name="fileName">The file name for the inline image.</param>
+        /// <param name="fileBlob">The base64 formatted blob string defining the inline image.</param>
+        /// <param name="mimetype">The mime type definition for the inline image.</param>
+        /// <returns>A reference to this instance after the operation has completed.</returns>
         public EmailRequest AddInlineImage(string fileName, string fileBlob, string mimetype)
         {
             return AddAttachment(fileName, fileBlob, mimetype, _inlines);
         }
 
 
+
+        /// <summary>
+        /// Adds an email file attachment to the Attachments collection.
+        /// </summary>
+        /// <param name="fileName">The file name for the file attachment.</param>
+        /// <param name="fileBlob">The base64 formatted blob string defining the file attachment.</param>
+        /// <param name="mimetype">The mime type definition for the file attachment.</param>
+        /// <returns>A reference to this instance after the operation has completed.</returns>
         public EmailRequest AddAttachment(string fileName, string fileBlob, string mimetype)
         {
             return AddAttachment(fileName, fileBlob, mimetype, _attachments);
@@ -186,10 +208,23 @@ namespace Smtp2Go.Api.Models.Emails
             return this;
         }
 
+        /// <summary>
+        /// Adds an inline image from a local system file path to the InlineImages collection.
+        /// </summary>
+        /// <param name="filePath">The local system file path the image is located.</param>
+        /// <param name="mimetype">The mime type definition for the inline image.</param>
+        /// <returns>A reference to this instance after the operation has completed.</returns>
         public EmailRequest AddInlineImage(string filePath, string mimetype)
         {
             return AddFileAttachment(filePath, mimetype, _inlines);
         }
+
+        /// <summary>
+        /// Adds an email file attachment from a local system file path to the Attachments collection.
+        /// </summary>
+        /// <param name="filePath">The local system file path the image is located.</param>
+        /// <param name="mimetype">The mime type definition for the inline image.</param>
+        /// <returns>A reference to this instance after the operation has completed.</returns>
         public EmailRequest AddAttachment(string filePath, string mimetype)
         {
             return AddFileAttachment(filePath, mimetype, _attachments);
