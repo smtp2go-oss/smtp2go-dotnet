@@ -5,10 +5,19 @@ using System.Text.Json.Serialization;
 
 namespace Smtp2Go.Api.Models.Emails
 {
+    /// <summary>
+    /// Used for sending emails with an associated template in the Smtp2Go dashboard.
+    /// </summary>
     public class TemplatedEmailMessage : EmailRequest
     {
         private readonly Dictionary<string, string> _templateVariables = new Dictionary<string, string>();
 
+        /// <summary>
+        /// Creates a templated email message with the minimal settings required to succesfully send via the Smtp2Go API Client.
+        /// </summary>
+        /// <param name="templateId"></param>
+        /// <param name="sender"></param>
+        /// <param name="to"></param>
         public TemplatedEmailMessage(string templateId, string sender, params string[] to) : base(sender, to)
         {
             TemplateId = templateId;
@@ -26,12 +35,20 @@ namespace Smtp2Go.Api.Models.Emails
         [JsonPropertyName("template_data")]
         public IDictionary<string, string> TemplateVariables { get { return _templateVariables; } }
 
-        public void AddTemplateVariable(string variableName, string variableValue)
+        /// <summary>
+        /// Adds a template variable and asssociated value to this templated email message.
+        /// </summary>
+        /// <param name="variableName">The variable name to match a value to in this templated email message.</param>
+        /// <param name="variableValue">The value to use in this templated email message.</param>
+        /// <returns>A reference to this instance after the operation has completed.</returns>
+        public TemplatedEmailMessage AddTemplateVariable(string variableName, string variableValue)
         {
             if (!string.IsNullOrWhiteSpace(variableName) && !_templateVariables.ContainsKey(variableName))
             {
                 _templateVariables.Add(variableName, variableValue);
             }
+
+            return this;
         }
     }
 }

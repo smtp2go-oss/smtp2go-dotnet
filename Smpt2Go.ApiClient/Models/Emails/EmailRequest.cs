@@ -81,12 +81,15 @@ namespace Smtp2Go.Api.Models.Emails
         /// </summary>
         /// <param name="email">The email to send to.</param>
         /// <param name="displayName">The display name for the email address.</param>
-        public void AddToAddress(string email, string? displayName = null)
+        /// <returns>A reference to this instance after the operation has completed.</returns>
+        public EmailRequest AddToAddress(string email, string? displayName = null)
         {
             if (!string.IsNullOrWhiteSpace(displayName))
                 _to.Add($"{displayName} <{email}>");
             else
                 _to.Add($"{email}");
+
+            return this;
         }
 
         /// <summary>
@@ -94,12 +97,15 @@ namespace Smtp2Go.Api.Models.Emails
         /// </summary>
         /// <param name="email">The email to cc send to.</param>
         /// <param name="displayName">The display name for the email address.</param>
-        public void AddCcAddress(string email, string? displayName = null)
+        /// <returns>A reference to this instance after the operation has completed.</returns>
+        public EmailRequest AddCcAddress(string email, string? displayName = null)
         {
             if (!string.IsNullOrWhiteSpace(displayName))
                 _cc.Add($"{displayName} <{email}>");
             else
                 _cc.Add($"{email}");
+
+            return this;
         }
 
         /// <summary>
@@ -107,15 +113,24 @@ namespace Smtp2Go.Api.Models.Emails
         /// </summary>
         /// <param name="email">The email to bcc send to.</param>
         /// <param name="displayName">The display name for the email address.</param>
-        public void AddBccAddress(string email, string? displayName = null)
+        /// <returns>A reference to this instance after the operation has completed.</returns>
+        public EmailRequest AddBccAddress(string email, string? displayName = null)
         {
             if (!string.IsNullOrWhiteSpace(displayName))
                 _bcc.Add($"{displayName} <{email}>");
             else
                 _bcc.Add($"{email}");
+
+            return this;
         }
 
-        public void AddCustomHeader(string header, string value)
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="header"></param>
+        /// <param name="value"></param>
+        /// <returns>A reference to this instance after the operation has completed.</returns>
+        public EmailRequest AddCustomHeader(string header, string value)
         {
             if (!string.IsNullOrWhiteSpace(header) && !string.IsNullOrWhiteSpace(value))
             {
@@ -124,29 +139,36 @@ namespace Smtp2Go.Api.Models.Emails
                     _customHeaders.Add(new EmailHeader(header, value));
                 }
             }
+
+            return this;
         }
 
-        public void AddInlineImage(string fileName, string fileBlob, string mimetype)
+        private EmailRequest AddAttachment(string fileName, string fileBlob, string mimetype, List<EmailBlob> target)
         {
-            AddAttachment(fileName, fileBlob, mimetype, _inlines);
+            if (!string.IsNullOrWhiteSpace(fileName) && !string.IsNullOrWhiteSpace(fileBlob) && !string.IsNullOrWhiteSpace(mimetype))
+            {
+                if (!target.Exists(x => x.FileName == fileName))
+                {
+                    target.Add(new EmailBlob(fileName, fileBlob, mimetype));
+                }
+            }
+
+            return this;
         }
 
-        public void AddInlineImage(string filePath, string mimetype)
+
+        public EmailRequest AddInlineImage(string fileName, string fileBlob, string mimetype)
         {
-            AddFileAttachment(filePath, mimetype, _inlines);
+            return AddAttachment(fileName, fileBlob, mimetype, _inlines);
         }
 
-        public void AddAttachment(string fileName, string fileBlob, string mimetype)
+
+        public EmailRequest AddAttachment(string fileName, string fileBlob, string mimetype)
         {
-            AddAttachment(fileName, fileBlob, mimetype, _attachments);
+            return AddAttachment(fileName, fileBlob, mimetype, _attachments);
         }
 
-        public void AddAttachment(string filePath, string mimetype)
-        {
-            AddFileAttachment(filePath, mimetype, _attachments);
-        }
-
-        private void AddFileAttachment(string filePath, string mimetype, List<EmailBlob> target)
+        private EmailRequest AddFileAttachment(string filePath, string mimetype, List<EmailBlob> target)
         {
             if (!string.IsNullOrWhiteSpace(filePath) && !string.IsNullOrWhiteSpace(mimetype))
             {
@@ -160,17 +182,17 @@ namespace Smtp2Go.Api.Models.Emails
                 }
                 else throw new FileNotFoundException($"File not found at path {filePath}.", filePath);
             }
+
+            return this;
         }
 
-        private void AddAttachment(string fileName, string fileBlob, string mimetype, List<EmailBlob> target)
+        public EmailRequest AddInlineImage(string filePath, string mimetype)
         {
-            if (!string.IsNullOrWhiteSpace(fileName) && !string.IsNullOrWhiteSpace(fileBlob) && !string.IsNullOrWhiteSpace(mimetype))
-            {
-                if (!target.Exists(x => x.FileName == fileName))
-                {
-                    target.Add(new EmailBlob(fileName, fileBlob, mimetype));
-                }
-            }
+            return AddFileAttachment(filePath, mimetype, _inlines);
+        }
+        public EmailRequest AddAttachment(string filePath, string mimetype)
+        {
+            return AddFileAttachment(filePath, mimetype, _attachments);
         }
     }
 }
