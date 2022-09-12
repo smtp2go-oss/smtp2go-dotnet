@@ -3,6 +3,13 @@
   <PropertyGroup>
     <TargetFramework>netstandard2.1</TargetFramework>
     <Nullable>enable</Nullable>
+    <PackageId>Smtp2Go.ApiClient.Test</PackageId>
+    <Version>0.0.2</Version>
+    <Authors>Smtp2Go.ApiClient</Authors>
+    <Company>Smtp2Go</Company>
+    <Product>Smtp2Go Email API Client</Product>
+    <GenerateDocumentationFile>True</GenerateDocumentationFile>
+    <GeneratePackageOnBuild>True</GeneratePackageOnBuild>
   </PropertyGroup>
 
   <ItemGroup>
