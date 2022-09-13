@@ -1,7 +1,4 @@
 ﻿using Smtp2Go.Api.Models.Emails;
-using System;
-using System.Collections.Generic;
-using System.Text;
 using System.Threading.Tasks;
 
 namespace Smtp2Go.Api

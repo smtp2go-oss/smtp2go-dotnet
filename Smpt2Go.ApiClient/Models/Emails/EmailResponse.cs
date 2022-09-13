@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Net;
-using System.Text;
-using System.Text.Json.Serialization;
+﻿using System.Text.Json.Serialization;
 
 namespace Smtp2Go.Api.Models.Emails
 {

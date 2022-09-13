@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-
-namespace Smtp2Go.Api.Models
+﻿namespace Smtp2Go.Api.Models
 {
     /// <summary>
     /// The root contract all response objects that are returned from the <see cref="Smtp2GoApiClient">Smtp2Go Api Client</see> contain.

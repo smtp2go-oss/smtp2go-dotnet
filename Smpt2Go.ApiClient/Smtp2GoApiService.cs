@@ -1,7 +1,4 @@
 ﻿using Smtp2Go.Api.Models.Emails;
-using System;
-using System.Collections.Generic;
-using System.Text;
 using System.Threading.Tasks;
 
 namespace Smtp2Go.Api
@@ -24,7 +21,7 @@ namespace Smtp2Go.Api
         /// An implementation of an <see cref="IApiClient"/> provided during instantiation.
         /// </summary>
         public IApiClient Client { get; }
-        
+
         /// <inheritdoc/>
         public async Task<EmailResponse> SendEmail(EmailMessage request)
         {
