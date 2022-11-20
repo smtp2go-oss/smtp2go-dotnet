@@ -1,7 +1,7 @@
 
 # SMTP2GO .NET
 
-This library provides a simple way to send email via the SMTP2GO API and also access other endpoints in the API in a standard way.  Information sent and received via this service represent the same objects as the API documentation found [here](https://apidoc.smtp2go.com/documentation/#/README).
+This .NET Standard library provides a simple way to send email via the SMTP2GO API and also access other endpoints in the API in a standard way.  Information sent and received via this service represent the same objects as the API documentation found [here](https://apidoc.smtp2go.com/documentation/#/README).
 
 # Basic Usage
 1. Add a reference to the latest Nuget package
