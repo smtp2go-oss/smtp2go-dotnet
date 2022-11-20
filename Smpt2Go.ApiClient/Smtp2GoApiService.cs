@@ -18,6 +18,16 @@ namespace Smtp2Go.Api
         }
 
         /// <summary>
+        /// Creates an <see cref="Smtp2GoApiService"/> that will use the provided api key to interact with certain Smtp2Go API endpoints.
+        /// </summary>
+        /// <param name="apiKey">The API key to be used in all API Service requests.</param>
+        /// <param name="apiBaseUrl">The base API URL, current default is '<see href="https://api.smtp2go.com/v3/"/>'.</param>
+        public Smtp2GoApiService(string apiKey, string apiBaseUrl = "https://api.smtp2go.com/v3/")
+        {
+            Client = new Smtp2GoApiClient(apiKey, apiBaseUrl);
+        }
+
+        /// <summary>
         /// An implementation of an <see cref="IApiClient"/> provided during instantiation.
         /// </summary>
         public IApiClient Client { get; }
