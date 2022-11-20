@@ -7,6 +7,8 @@ This .NET Standard library provides a simple way to send email via the SMTP2GO A
 1. Add a reference to the latest Nuget package
 
    ```console
+   dotnet add package Smtp2Go.ApiClient
+    or
    Install-Package Smtp2Go.ApiClient
    ```
 2. Create an `Smtp2GoApiService` providing your Smtp2Go API key...
