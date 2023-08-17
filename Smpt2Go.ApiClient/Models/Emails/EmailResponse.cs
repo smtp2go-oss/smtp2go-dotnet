@@ -11,17 +11,17 @@ namespace Smtp2Go.Api.Models.Emails
         /// A Unique ID for this request.
         /// </summary>
         [JsonPropertyName("request_id")]
-        public string RequestId { get; set; } = null!;
+        public string RequestId { get; set; } = null;
 
         /// <summary>
         ///Email data returned by the Smtp2Go API endpoint.
         /// </summary>
         [JsonPropertyName("data")]
-        public EmailResponseData Data { get; set; } = null!;
+        public EmailResponseData Data { get; set; } = null;
 
         /// <summary>
         /// The HTTP status message returned by the API Client.
         /// </summary>
-        public string ResponseStatus { get; set; } = null!;
+        public string ResponseStatus { get; set; } = null;
     }
 }

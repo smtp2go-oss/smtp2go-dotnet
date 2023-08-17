@@ -12,7 +12,7 @@ namespace Smtp2Go.Api.Models.Emails
         /// </summary>
         /// <param name="sender">The emails from email address.</param>
         /// <param name="to">One or more email addresses to send the email to, formatted as 'display_name &lt;email_address&gt;'.</param>
-        public EmailMessage(string sender = null!, params string[] to) : base(sender, to) { }
+        public EmailMessage(string sender = null, params string[] to) : base(sender, to) { }
 
         /// <summary>
         /// Creates an email message.
@@ -21,7 +21,7 @@ namespace Smtp2Go.Api.Models.Emails
         /// <param name="subject">The subject of the email to be sent.</param>
         /// <param name="sender">The emails from email address.</param>
         /// <param name="to">One or more email addresses to send the email to, formatted as 'display_name &lt;email_address&gt;'.</param>
-        public EmailMessage(string? bodyHtml, string? subject, string sender, params string[] to) : base(sender, to)
+        public EmailMessage(string bodyHtml, string subject, string sender, params string[] to) : base(sender, to)
         {
             Subject = subject;
             BodyHtml = bodyHtml;
@@ -31,18 +31,18 @@ namespace Smtp2Go.Api.Models.Emails
         /// The subject of the email to be sent.
         /// </summary>
         [JsonPropertyName("subject")]
-        public string? Subject { get; set; }
+        public string Subject { get; set; }
 
         /// <summary>   
         /// An HTML encoded email body.
         /// </summary>
         [JsonPropertyName("text_body")]
-        public string? BodyText { get; set; }
+        public string BodyText { get; set; }
 
         /// <summary>
         /// An HTML encoded email body.
         /// </summary>
         [JsonPropertyName("html_body")]
-        public string? BodyHtml { get; set; }
+        public string BodyHtml { get; set; }
     }
 }

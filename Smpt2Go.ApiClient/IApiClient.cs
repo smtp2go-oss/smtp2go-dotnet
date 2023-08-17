@@ -17,6 +17,6 @@ namespace Smtp2Go.Api
         /// <param name="response">An instance of an <see cref="IApiResponse">IApiResponse</see> implementation.</param>
         /// <param name="endpoint"></param>
         /// <returns>The supplied <see cref="IApiResponse">IApiResponse</see> instance containing API response data.</returns>
-        public Task<T> SendReceive<X, T>(X request, T response, string endpoint) where T : IApiResponse where X : IApiRequest;
+        Task<T> SendReceive<X, T>(X request, T response, string endpoint) where T : IApiResponse where X : IApiRequest;
     }
 }

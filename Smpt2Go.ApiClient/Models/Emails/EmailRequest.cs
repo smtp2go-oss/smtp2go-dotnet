@@ -33,7 +33,7 @@ namespace Smtp2Go.Api.Models.Emails
         /// A full API Key from the API Keys admin console.
         /// </summary>
         [JsonPropertyName("api_key")]
-        public string? ApiKey { get; set; }
+        public string ApiKey { get; set; }
 
         /// <summary>
         /// An array of email addresses (up to 100) to send to, eg. ["john@example.com", "jane@example.com"].
@@ -89,7 +89,7 @@ namespace Smtp2Go.Api.Models.Emails
         /// <param name="email">The email to send to.</param>
         /// <param name="displayName">The display name for the email address.</param>
         /// <returns>A reference to this instance after the operation has completed.</returns>
-        public EmailRequest AddToAddress(string email, string? displayName = null)
+        public EmailRequest AddToAddress(string email, string displayName = null)
         {
             if (!string.IsNullOrWhiteSpace(displayName))
                 _to.Add($"{displayName} <{email}>");
@@ -105,7 +105,7 @@ namespace Smtp2Go.Api.Models.Emails
         /// <param name="email">The email to cc send to.</param>
         /// <param name="displayName">The display name for the email address.</param>
         /// <returns>A reference to this instance after the operation has completed.</returns>
-        public EmailRequest AddCcAddress(string email, string? displayName = null)
+        public EmailRequest AddCcAddress(string email, string displayName = null)
         {
             if (!string.IsNullOrWhiteSpace(displayName))
                 _cc.Add($"{displayName} <{email}>");
@@ -121,7 +121,7 @@ namespace Smtp2Go.Api.Models.Emails
         /// <param name="email">The email to bcc send to.</param>
         /// <param name="displayName">The display name for the email address.</param>
         /// <returns>A reference to this instance after the operation has completed.</returns>
-        public EmailRequest AddBccAddress(string email, string? displayName = null)
+        public EmailRequest AddBccAddress(string email, string displayName = null)
         {
             if (!string.IsNullOrWhiteSpace(displayName))
                 _bcc.Add($"{displayName} <{email}>");

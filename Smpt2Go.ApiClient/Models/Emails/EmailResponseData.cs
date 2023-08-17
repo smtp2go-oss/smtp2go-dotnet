@@ -24,12 +24,12 @@ namespace Smtp2Go.Api.Models.Emails
         /// Any failures will be listed here.
         /// </summary>
         [JsonPropertyName("failures")]
-        public IEnumerable<string> Failures { get; set; } = null!;
+        public IEnumerable<string> Failures { get; set; } = null;
 
         /// <summary>
         /// The email ID generated if successfully sent.
         /// </summary>
         [JsonPropertyName("email_id")]
-        public string EmailId { get; set; } = null!;
+        public string EmailId { get; set; } = null;
     }
 }

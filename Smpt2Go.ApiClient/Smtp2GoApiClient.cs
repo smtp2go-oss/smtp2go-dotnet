@@ -60,7 +60,7 @@ namespace Smtp2Go.Api
                 response.ResponseStatus = apiResponse.ReasonPhrase;
             }
 
-            return response!;
+            return response;
         }
 
     }

@@ -8,6 +8,6 @@
         /// <summary>
         /// The API Key that all interactions with the Smtp2Go API must contain.
         /// </summary>
-        string? ApiKey { get; set; }
+        string ApiKey { get; set; }
     }
 }
