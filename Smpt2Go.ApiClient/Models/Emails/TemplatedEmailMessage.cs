@@ -8,7 +8,7 @@ namespace Smtp2Go.Api.Models.Emails
     /// </summary>
     public class TemplatedEmailMessage : EmailRequest
     {
-        private readonly Dictionary<string, string> _templateVariables = new Dictionary<string, string>();
+        private readonly Dictionary<string, object> _templateVariables = new Dictionary<string, object>();
 
         /// <summary>
         /// Creates a templated email message with the minimal settings required to succesfully send via the Smtp2Go API Client.
@@ -39,7 +39,7 @@ namespace Smtp2Go.Api.Models.Emails
         /// <param name="variableName">The variable name to match a value to in this templated email message.</param>
         /// <param name="variableValue">The value to use in this templated email message.</param>
         /// <returns>A reference to this instance after the operation has completed.</returns>
-        public TemplatedEmailMessage AddTemplateVariable(string variableName, string variableValue)
+        public TemplatedEmailMessage AddTemplateVariable(string variableName, object variableValue)
         {
             if (!string.IsNullOrWhiteSpace(variableName) && !_templateVariables.ContainsKey(variableName))
             {
